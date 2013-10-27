@@ -32,14 +32,69 @@ namespace Currency_Converter
                 throw new Exception("Could not retrieve rate from API. ");
             }
 
-
             Rate ro = JsonConvert.DeserializeObject<Rate>(response);
 
             float r = Convert.ToSingle(ro.rate);
 
             //Do the math
             string o = (inputMoney * r).ToString("n2");
-            return o;
+
+            //Determine symbol
+            string symbol = "";
+            switch (outputCurrency)
+            {
+                case "AUD":
+                    symbol = "$";
+                    break;
+                case "CAD":
+                    symbol = "$";
+                    break;
+                case "CHF":
+                    symbol = "CHF";
+                    break;
+                case "DKK":
+                    symbol = "kr";
+                    break;
+                case "EUR":
+                    symbol = "€";
+                    break;
+                case "GBP":
+                    symbol = "£";
+                    break;
+                case "HKD":
+                    symbol = "$";
+                    break;
+                case "JPY":
+                    symbol = "¥";
+                    break;
+                case "MXN":
+                    symbol = "$";
+                    break;
+                case "NZD":
+                    symbol = "$";
+                    break;
+                case "PHP":
+                    symbol = "₱";
+                    break;
+                case "SEK":
+                    symbol = "kr";
+                    break;
+                case "SGD":
+                    symbol = "$";
+                    break;
+                case "THB":
+                    symbol = "฿";
+                    break;
+                case "USD":
+                    symbol = "$";
+                    break;
+                case "ZAR":
+                    symbol = "R";
+                    break;
+            }
+
+            //Return
+            return o + symbol;
         }
     }
 }
